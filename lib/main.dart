@@ -2,6 +2,7 @@ import 'package:flutter_app/pages/checkout.dart';
 import 'package:flutter_app/pages/checkout_final.dart';
 import 'package:flutter_app/pages/shop_items.dart';
 import 'package:flutter_app/pages/checkout_Confirmation_Message.dart';
+import 'package:flutter_app/pages/Details.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(myApp());
@@ -26,9 +27,10 @@ class myApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: MaterialColor(0xFFFF7000, color),
       ),
-      initialRoute: '/',
+      initialRoute: '/shop_items',
       routes: {
-        '/': (BuildContext context) => ShopItems(),
+        '/shop_items': (BuildContext context) => ShopItems(),
+        '/Details': (BuildContext context) => Details(),
         '/checkout': (BuildContext context) => Checkout(),
         '/checkout_final': (BuildContext context) => Checkout_final(),
         '/checkout_Confirmation_Message': (BuildContext context) =>

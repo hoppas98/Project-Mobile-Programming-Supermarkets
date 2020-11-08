@@ -1,7 +1,6 @@
 import 'package:flutter_app/bloc/cart_items_bloc.dart';
+import 'package:flutter_app/pages/Details.dart';
 import 'package:flutter/material.dart';
-
-List<String> location = ['A', 'B', 'C'];
 
 class ShopItems extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -9,6 +8,10 @@ class ShopItems extends StatelessWidget {
       appBar: AppBar(
         title: Text('Available items'),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.article),
+            onPressed: () => Navigator.pushNamed(context, '/Details'),
+          ),
           IconButton(
             icon: Icon(Icons.shopping_cart),
             onPressed: () => Navigator.pushNamed(context, '/checkout'),
