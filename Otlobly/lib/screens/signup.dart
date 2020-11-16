@@ -131,7 +131,7 @@ class _SignupPageState extends State<SignupPage> {
                               borderRadius: BorderRadius.circular(20.0)),
                           child: InkWell(
                             onTap: () {
-                              Navigator.of(context).pop();
+                              Navigator.pushNamed(context, '/home');
                             },
                             child: Center(
                               child: Text('Go Back',

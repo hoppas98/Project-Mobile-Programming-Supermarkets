@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:abdo/pages/shop_items.dart';
+import 'package:Otlobly/screens/itemsView.dart';
 
-class MyHomePage extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
   _MyHomePageState createState() => new _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -44,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
                 child: Column(
                   children: <Widget>[
-                    TextField(
+                    TextFormField(
                       decoration: InputDecoration(
                           labelText: 'EMAIL',
                           labelStyle: TextStyle(
@@ -81,34 +81,30 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       ),
                     ),
-                    RaisedButton(
-                        onPressed: () =>
-                            Navigator.pushNamed(context, '/shop_items'),
-                        child: Text("Login"),
-                        color: Colors.white),
-                    SizedBox(height: 40),
-                    // SizedBox(height: 40.0),
-                    // Container(
-                    //   height: 40.0,
-                    //   child: Material(
-                    //     borderRadius: BorderRadius.circular(20.0),
-                    //     shadowColor: Colors.greenAccent,
-                    //     color: Colors.green,
-                    //     elevation: 7.0,
-                    //     child: GestureDetector(
-                    //       onTap: () {},
-                    //       child: Center(
-                    //         child: Text(
-                    //           'LOGIN',
-                    //           style: TextStyle(
-                    //               color: Colors.white,
-                    //               fontWeight: FontWeight.bold,
-                    //               fontFamily: 'Montserrat'),
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    SizedBox(height: 40.0),
+                    Container(
+                      height: 40.0,
+                      child: Material(
+                        borderRadius: BorderRadius.circular(20.0),
+                        shadowColor: Colors.greenAccent,
+                        color: Colors.green,
+                        elevation: 7.0,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.of(context).pushNamed('/home');
+                          },
+                          child: Center(
+                            child: Text(
+                              'LOGIN',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Montserrat'),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(height: 20.0),
                     Container(
                       height: 40.0,

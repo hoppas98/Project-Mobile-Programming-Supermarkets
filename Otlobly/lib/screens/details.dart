@@ -1,6 +1,24 @@
+import 'package:Otlobly/screens/main_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
+import 'package:Otlobly/animations/FadeAnimation.dart';
 
-class Details extends StatelessWidget {
+class Details extends StatefulWidget {
+  @override
+  _DetailsState createState() => _DetailsState();
+}
+
+class _DetailsState extends State<Details> {
+  double _width = 200;
+  double _height = 200;
+  double _updatestate() {
+    setState(() {
+      _width = 700;
+      _height = 700;
+    });
+  }
+
+  @override
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -9,16 +27,19 @@ class Details extends StatelessWidget {
         elevation: 0.0,
         iconTheme: IconThemeData(
           color: Colors.black,
-          opacity: 20,
+          opacity: 10,
         ),
       ),
+      drawer: main_drawer(),
       body: Container(
         width: double.infinity,
         height: double.infinity,
         child: Column(
           children: <Widget>[
             Expanded(
-              child: Container(
+                child: FadeAnimation(
+              1.3,
+              Container(
                 decoration: BoxDecoration(
                   color: Color(0xffacf4ff),
                   borderRadius: BorderRadius.only(
@@ -29,7 +50,7 @@ class Details extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
+            )),
             Expanded(
                 child: Container(
               color: Colors.white,
