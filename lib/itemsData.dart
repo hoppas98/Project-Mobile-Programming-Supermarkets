@@ -11,19 +11,19 @@ class IProductData {
   List<Products> productDB = [
     Products(
         //0
-        productName: 'Chocolate',
+        productName: 'CHOCOLATE',
         quantity: '5',
         price: 'EGP 5',
         description: 'None'),
     Products(
         //1
-        productName: 'Water',
+        productName: 'WATER',
         quantity: '100',
         price: 'EGP 2.5',
         description: '1L'),
     Products(
         //2
-        productName: 'Soda',
+        productName: 'SODA',
         quantity: '150',
         price: 'EGP 7.5',
         description: '250ml'),

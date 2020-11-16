@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_project/cartView.dart';
 import 'package:flutter_app_project/itemsView.dart';
 
 void main() => runApp(confirmationMessage());
@@ -16,8 +17,8 @@ class confirmationMessage extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.pop(context);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => itemsView()));
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => CartView()));
             },
           ),
         ),

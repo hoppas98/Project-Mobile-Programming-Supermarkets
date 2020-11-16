@@ -1,42 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_project/cartView.dart';
-import 'package:flutter_app_project/itemsData.dart';
-import 'package:flutter_app_project/detailsView.dart';
+import 'package:flutter_app_project/itemsView.dart';
+import 'package:flutter_app_project/confirmationPage.dart';
 
-var count = -1;
-
-class itemsView extends StatefulWidget {
-  _itemsViewState createState() => _itemsViewState();
+class CartView extends StatefulWidget {
+  _CartViewState createState() => _CartViewState();
 }
 
-class _itemsViewState extends State<itemsView> {
+class _CartViewState extends State<CartView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('PRODUCTS'),
+        title: Text('CART'),
         leading: IconButton(
           icon: Icon(
             Icons.arrow_left,
           ),
-          onPressed: null,
+          onPressed: () {
+            Navigator.pop(context);
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => itemsView()));
+          },
         ),
-        actions: [
-          Icon(
-            Icons.search,
-            color: Colors.white,
-          ),
-          IconButton(
-              icon: Icon(
-                Icons.shopping_bag_rounded,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CartView()));
-              }),
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
@@ -44,7 +29,7 @@ class _itemsViewState extends State<itemsView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'MARKET',
+              'SHOPPING CART',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 21),
             ),
             SizedBox(
@@ -57,6 +42,89 @@ class _itemsViewState extends State<itemsView> {
               height: 21,
             ),
             Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Total',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  'EGP 15.0',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Delivery fees',
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+                Text(
+                  'EGP 40.0',
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+            Divider(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Sub Total',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  'EGP 55.0',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+            Spacer(),
+            Center(
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => confirmationMessage()));
+                },
+                color: Colors.cyan,
+                child: Text(
+                  'PROOCED TO CHECKOUT',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 18),
           ],
         ),
       ),
@@ -65,21 +133,13 @@ class _itemsViewState extends State<itemsView> {
 }
 
 class CartItem extends StatelessWidget {
-  CartItem({
+  const CartItem({
     Key key,
   }) : super(key: key);
-  final IProductData appLogic = IProductData();
 
   @override
   Widget build(BuildContext context) {
-    count = count + 1;
-    if (count == 3) {
-      count = 0;
-      print(count);
-    }
-
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5),
       color: Colors.white,
       margin: EdgeInsets.symmetric(vertical: 4),
       child: Row(
@@ -114,7 +174,7 @@ class CartItem extends StatelessWidget {
                 Container(
                   width: 100,
                   child: Text(
-                    appLogic.getProduct(count)[0],
+                    'Chocolate Galaxy',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -160,33 +220,11 @@ class CartItem extends StatelessWidget {
                       ),
                     ),
                     Spacer(),
-                    Column(
-                      children: [
-                        Text(
-                          appLogic.getProduct(count)[2],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.add_shopping_cart,
-                          ),
-                          onPressed: null,
-                        ),
-                        IconButton(
-                          icon: Icon(
-                            Icons.view_carousel,
-                          ),
-                          onPressed: () {
-                            Navigator.pop(context);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Details()));
-                          },
-                        ),
-                      ],
+                    Text(
+                      'EGP 5.0',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
