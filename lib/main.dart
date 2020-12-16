@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_project/itemsView.dart';
+import 'package:flutter_app6/screens/homepage.dart';
 
-void main() => runApp(myApp());
+void main() => runApp(MyApp());
 
-class myApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.light(),
-      home: itemsView(),
+      debugShowCheckedModeBanner: false,
+      home: HomePage(),
     );
   }
 }
