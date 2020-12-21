@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Otlobly/screens/cartView.dart';
-import 'package:Otlobly/screens/itemsView.dart';
+import 'package:Otlobly/cartView.dart';
+import 'package:Otlobly/itemsView.dart';
 
 void main() => runApp(confirmationMessage());
 
@@ -32,7 +32,11 @@ class confirmationMessage extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               onPressed: () {
-                Navigator.of(context).pushNamed('/home');
+                // Navigator.pop(context);
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => confirmationMessage()));
               },
               color: Colors.cyan,
               child: Text(

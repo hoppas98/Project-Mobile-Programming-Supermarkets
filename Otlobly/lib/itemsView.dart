@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Otlobly/screens/cartView.dart';
-import 'package:Otlobly/screens/itemsData.dart';
-import 'package:Otlobly/screens/details.dart';
+import 'package:Otlobly/cartView.dart';
+import 'package:Otlobly/itemsData.dart';
+import 'package:Otlobly/detailsView.dart';
 
 var count = -1;
 
@@ -19,9 +19,7 @@ class _itemsViewState extends State<itemsView> {
           icon: Icon(
             Icons.arrow_left,
           ),
-          onPressed: () {
-            Navigator.of(context).pushNamed('/home');
-          },
+          onPressed: null,
         ),
         actions: [
           Icon(
@@ -99,7 +97,7 @@ class CartItem extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.scaleDown,
-                    image: AssetImage('images/chocolate.jpg'),
+                    image: AssetImage('images/Chocolate.jpg'),
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
