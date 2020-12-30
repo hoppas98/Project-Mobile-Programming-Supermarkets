@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Otlobly/cartView.dart';
-import 'package:Otlobly/itemsView.dart';
+import 'package:otlobly/cartView.dart';
+import 'package:otlobly/itemsView.dart';
 
 void main() => runApp(confirmationMessage());
 

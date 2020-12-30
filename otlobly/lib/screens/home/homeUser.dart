@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:otlobly/services/auth.dart';
+import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
-import '../components/horizontal_listview.dart';
-import '../components/products.dart';
-import 'package:Otlobly/pages/cart.dart';
+import '../../components/horizontal_listview.dart';
+import '../../components/products.dart';
+import 'package:otlobly/pages/cart.dart';
+import 'package:otlobly/screens/authenticate/sign_in.dart';
 
-class HomePage extends StatefulWidget {
+class HomeUser extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeUserState createState() => _HomeUserState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeUserState extends State<HomeUser> {
+  final AuthService _auth = AuthService();
   // Slider
   Widget imageCarousel = Container(
     padding: EdgeInsets.all(10),
@@ -41,7 +45,7 @@ class _HomePageState extends State<HomePage> {
         title: InkWell(
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => new HomePage()));
+                  MaterialPageRoute(builder: (context) => new HomeUser()));
             },
             child: Text('Otlobly')),
         actions: [
@@ -54,14 +58,28 @@ class _HomePageState extends State<HomePage> {
                 print('Search Button');
               }),
           IconButton(
-              icon: Icon(
-                Icons.shopping_cart,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => new Cart()));
-              })
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => new Cart()));
+            },
+          ),
+          FlatButton.icon(
+            onPressed: () async {
+              await _auth.signOut();
+            },
+            icon: Icon(
+              Icons.person,
+              color: Colors.white,
+            ),
+            label: Text('Logout',
+                style: TextStyle(
+                  color: Colors.white,
+                )),
+          )
         ],
       ),
 
@@ -88,7 +106,7 @@ class _HomePageState extends State<HomePage> {
             InkWell(
               onTap: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (context) => HomePage()));
+                    .push(MaterialPageRoute(builder: (context) => HomeUser()));
               },
               child: ListTile(
                 title: Text('Home Page'),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Otlobly/itemsView.dart';
-import 'package:Otlobly/confirmationPage.dart';
+import 'package:otlobly/itemsView.dart';
+import 'package:otlobly/confirmationPage.dart';
 
 class CartView extends StatefulWidget {
   _CartViewState createState() => _CartViewState();
