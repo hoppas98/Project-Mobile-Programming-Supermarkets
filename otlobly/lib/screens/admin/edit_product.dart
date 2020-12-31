@@ -5,6 +5,7 @@ import 'package:otlobly/screens/wrapper.dart';
 import 'package:otlobly/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:otlobly/services/store.dart';
+import 'package:dcdg/dcdg.dart';
 
 class EditProduct extends StatefulWidget {
   @override
@@ -26,11 +27,7 @@ class _EditProductState extends State<EditProduct> {
   @override
   Widget build(BuildContext context) {
     Product products = ModalRoute.of(context).settings.arguments;
-    String productName = products.pName;
-    String productPrice = products.pPrice;
-    String productDescription = products.pDescription;
-    String productCategory = products.pCategory;
-    String productLocation = products.pLocation;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Edit product'),
@@ -157,7 +154,7 @@ class _EditProductState extends State<EditProduct> {
                             'productName': productName,
                             'productPrice': productPrice,
                             'productDescription': productDescription,
-                            'productLocation': productLocation,
+                            'productLocation': 'images/' + productLocation,
                             'productCategory': productCategory,
                           }),
                           products.pId);
