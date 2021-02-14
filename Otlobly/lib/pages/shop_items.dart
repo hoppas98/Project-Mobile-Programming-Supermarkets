@@ -1,5 +1,5 @@
-import 'package:Otlobly/bloc/cart_items_bloc.dart';
-import 'package:Otlobly/pages/Details.dart';
+import 'package:otlobly/bloc/cart_items_bloc.dart';
+import 'package:otlobly/pages/Details.dart';
 import 'package:flutter/material.dart';
 
 class ShopItems extends StatelessWidget {

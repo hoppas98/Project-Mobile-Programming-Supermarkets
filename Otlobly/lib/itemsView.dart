@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Otlobly/cartView.dart';
-import 'package:Otlobly/itemsData.dart';
-import 'package:Otlobly/detailsView.dart';
+import 'package:otlobly/cartView.dart';
+import 'package:otlobly/itemsData.dart';
+import 'package:otlobly/detailsView.dart';
 
 var count = -1;
 

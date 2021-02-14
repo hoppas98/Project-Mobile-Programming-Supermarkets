@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:Otlobly/pages/product_details.dart';
+import 'package:otlobly/models/product.dart';
+import 'package:otlobly/pages/product_details.dart';
+import 'package:otlobly/screens/admin/manage_product.dart';
+import 'package:otlobly/services/store.dart';
 
 class Products extends StatefulWidget {
   @override
@@ -7,93 +11,84 @@ class Products extends StatefulWidget {
 }
 
 class _ProductsState extends State<Products> {
-  var productList = [
-    {
-      'productName': 'Galaxy',
-      'productPicture': 'images/ChocolateGalaxy.jpg',
-      'oldPrice': 10,
-      'currentPrice': 7,
-    },
-    {
-      'productName': 'Pepsi Can',
-      'productPicture': 'images/PepsiCan.jpg',
-      'oldPrice': 5,
-      'currentPrice': 4.5,
-    },
-    {
-      'productName': 'Pepsi Bottle',
-      'productPicture': 'images/PepsiBottle.jpg',
-      'oldPrice': 10,
-      'currentPrice': 9,
-    },
-  ];
+  final _store = Store();
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      body: StreamBuilder<QuerySnapshot>(
+            stream: _store.loadProducts(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                List<Product> productList = [];
+                for (var doc in snapshot.data.documents) {
+                  var data = doc.data;
+
+                  productList.add(Product(
+                    pId: doc.documentID,
+                    pName: data['productName'],
+                    pPrice: data['productPrice'],
+                    pDescription: data['productDescription'],
+                    pLocation: data['productLocation'],
+                    pCategory: data['productCategory'],
+                  ));
+                }
     return GridView.builder(
-        itemCount: productList.length,
         gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemBuilder: (BuildContext context, int index) {
-          return SingleProduct(
-            productName: productList[index]['productName'],
-            productPicture: productList[index]['productPicture'],
-            productOldPrice: productList[index]['oldPrice'],
-            productCurrentPrice: productList[index]['currentPrice'],
-          );
-        });
-  }
-}
-
-class SingleProduct extends StatelessWidget {
-  final productName;
-  final productPicture;
-  final productOldPrice;
-  final productCurrentPrice;
-
-  SingleProduct({
-    this.productName,
-    this.productPicture,
-    this.productOldPrice,
-    this.productCurrentPrice,
-  });
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Hero(
-        tag: productName,
-        child: Material(
+            SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.9,
+              ),
+        itemBuilder: (context,index) => Padding(
+          padding: const EdgeInsets.all(8.0),
           child: InkWell(
-            onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => ProductDetails(
-                      productDetailsName: productName,
-                      productDetailsPicture: productPicture,
-                      productDetailsOldPrice: productOldPrice,
-                      productDetailsCurrentPrice: productCurrentPrice,
-                    ))),
-            child: GridTile(
-              footer: Container(
-                color: Colors.white,
-                child: ListTile(
-                  leading: Text(
-                    productName,
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  title: Text("EGP " + "$productCurrentPrice",
-                      style: TextStyle(color: Colors.red)),
-                  subtitle: Text("EGP " + "$productOldPrice",
-                      style: TextStyle(
-                        decoration: TextDecoration.lineThrough,
-                      )),
-                ),
-              ),
-              child: Image.asset(
-                productPicture,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+                            child: Stack(children: [
+                              Positioned.fill(
+                                child: Image(
+                                  fit: BoxFit.fill,
+                                  image: AssetImage(productList[index].pLocation),
+                                  
+                                ),
+                              ),
+                              InkWell(
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => Editproduct()),
+                                    //we're gonna update the navigation here
+                                    )
+                              ),
+                               Positioned(
+                                  bottom: 0,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 50,
+                                  
+                                  child: Opacity(
+                                    opacity: 0.5,
+                                    child: Container(
+                                      color: Colors.white,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              productList[index].pName,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text('EGP ' +
+                                                productList[index].pPrice),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ))
+                            ]),
+                          ),
+                        ),
+                    itemCount: productList.length,
+                    );
+              }
+            }));
   }
 }

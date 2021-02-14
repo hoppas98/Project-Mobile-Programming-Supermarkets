@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:Otlobly/screens/homepage.dart';
+import 'package:otlobly/screens/home/homepage.dart';
 
 class ProductDetails extends StatefulWidget {
   final productDetailsName;
